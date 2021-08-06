@@ -18,5 +18,5 @@ const config = { userNewUrlParser: true,
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', config);
 
 app.listen(PORT, () => {
-    console.log(`App running on ${PORT}` );
+    console.log(`App is a go ${PORT}!!!` );
 });
