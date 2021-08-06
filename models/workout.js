@@ -19,21 +19,21 @@ const workoutSchema = new Schema({
             required: "Name of the exercise."
         },
         weight: {
-            type: INTEGER
+            type: Number,
         },
         sets: {
-            type: INTEGER
+            type: Number,
         },
         reps: {
-            type: INTEGER
+            type: Number,
         },
         duration: {
-            type: INTEGER,
+            type: Number,
             required: "Time of the exercise."
         }
     }],
     totalDuration: {
-        type: INTEGER,
+        type: Number,
         trim: true,
         default: 0
     }
