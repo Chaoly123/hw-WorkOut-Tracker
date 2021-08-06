@@ -7,7 +7,7 @@ const workoutSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    exercises: {[
+    exercises: [{
         type: {
             type: String,
             trim: true,
@@ -24,14 +24,14 @@ const workoutSchema = new Schema({
         sets: {
             type: INTEGER
         },
-        reps{
+        reps: {
             type: INTEGER
         },
         duration: {
             type: INTEGER,
             required: "Time of the exercise."
         }
-    ]};
+    }]
 });
 
 
