@@ -12,8 +12,10 @@ router.post('/api/workout', ({ body }, req, res) => {
     });
 });
 
-router.get('./api/workout/range', (req.then, res) => {
-    workOut.find({})
+router.get('./api/workout/range', (req, res) => {
+    workOut.aggregate([
+        {$addFiels: { 'totalDutation': {$sum: '$exercise.duration'}}}
+    ])
     .then(dbworkOut => {
         res.json(dbworkOut)
     })
