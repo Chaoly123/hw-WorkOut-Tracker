@@ -12,3 +12,16 @@ router.post('/api/workout', ({ body }, res) => {
     });
 });
 
+router.put('/api/workouts/:id', ({ body, params }, res) => {
+    workOut.findOneAndUpdate(
+        { _id: params.id },
+        { $push: { exerices: body } },
+        { new: true })
+        .then(dbworkOut => {
+            res.json(dbworkOut);
+        })
+        .catch(err => {
+            res.json(400);
+            console.log(err)
+        });
+});
