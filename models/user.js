@@ -7,4 +7,9 @@ const userSchema = new Schema ({
         require: true,
         unique: true
     },
-})
+});
+
+const user = mongoose.model("User", userSchema);
+
+module.exports = User;
+
