@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const workOut = require('../models/workout');
 
-router.post('/api/workout', ({ body }, req, res) => {
+router.post('/api/workouts', ({ body }, res) => {
     workOut.create(body)
         .then(dbworkOut => {
             res.json(dbworkOut);
@@ -12,9 +12,9 @@ router.post('/api/workout', ({ body }, req, res) => {
         });
 });
 
-router.get('/api/workout', (req, res) => {
+router.get('/api/workouts', (req, res) => {
     workOut.aggregate([
-        { $addFields: { 'totalDuration': { $sum: 'exerices.duration' } } }
+        { $addFields: { 'totalDuration': { $sum: '$exerices.duration' } } }
     ])
         .then(dbworkOut => {
             res.json(dbworkOut);
@@ -25,7 +25,7 @@ router.get('/api/workout', (req, res) => {
         })
 });
 
-router.get('./api/workout/range', (req, res) => {
+router.get('/api/workouts/range', (req, res) => {
     workOut.aggregate([
         { $addFields: { 'totalDutation': { $sum: '$exercise.duration' } } }
     ])
@@ -39,10 +39,10 @@ router.get('./api/workout/range', (req, res) => {
 });
 
 
-router.put('/api/workouts/:id', ({ body, params }, req, res) => {
+router.put('/api/workouts/:id', ({ body, params }, res) => {
     workOut.findOneAndUpdate(
         { _id: params.id },
-        { $push: { exerices: body } },
+        { $push: { exercises: body } },
         { new: true })
         .then(dbworkOut => {
             res.json(dbworkOut);
